@@ -4,6 +4,7 @@ import com.energyxxer.photon.main.PhotonGame;
 import com.energyxxer.photon.objects.GameObject;
 import com.energyxxer.photon.objects.TestObject;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -41,11 +42,15 @@ public class Scene {
         this.objects.add(o5);
         this.objects.add(o6);
         this.objects.add(o7);
-        this.objects.add(o8);*/
+        this.objects.add(o8);
+        */
         this.camera = new Camera(this);
     }
 
     void render(Graphics2D g, Renderer r) {
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,r.getResolution().width, r.getResolution().height);
+
         ArrayList<GameObject> currentObjects = new ArrayList<>();
         currentObjects.addAll(objects);
 
@@ -54,6 +59,8 @@ public class Scene {
         for(GameObject gameObject : currentObjects) {
             gameObject.render(g,r);
         }
+
+        camera.z -= 5;
     }
 
     public void onTick() {

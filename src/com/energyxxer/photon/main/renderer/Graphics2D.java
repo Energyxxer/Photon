@@ -58,6 +58,17 @@ public class Graphics2D {
         this.fillRect(p1.x,p1.y,p2.x - p1.x,p2.y - p1.y);
     }
 
+    public void fillOval(double x, double y, double width, double height) {
+        g.fillOval((int) x, (int) y, (int) width, (int) height);
+    }
+
+    public void fill3DOval(double x, double y, double z, double width, double height) {
+        if(renderer.getGame().activeScene == null) return;
+        Point2D p1 = renderer.getGame().activeScene.getCamera().pointToScreen(new Point3D(x,y+height,z));
+        Point2D p2 = renderer.getGame().activeScene.getCamera().pointToScreen(new Point3D(x+width,y,z));
+        this.fillOval(p1.x,p1.y,p2.x - p1.x,p2.y - p1.y);
+    }
+
     /*
     * ===========
     *  DELEGATES

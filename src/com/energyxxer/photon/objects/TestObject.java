@@ -34,9 +34,10 @@ public class TestObject extends PhysicsObject {
 
     @Override
     public void render(Graphics2D g, Renderer r) {
-        int brightness = (int) (50 - 50 * (pos.z/1000));
+        /*int brightness = (int) (255 * (pos.z/1000));
         brightness = Math.min(Math.max(brightness,0), 255);
-        g.setColor(new Color(brightness, brightness, brightness));
-        g.fill3DRect(pos.x - (size/2), pos.y - (size/2), pos.z, size, size);
+        g.setColor(new Color(brightness, brightness, brightness));*/
+        g.setColor(Color.WHITE);
+        g.fill3DOval(pos.x - (size/2), pos.y - (size/2), pos.z, size, size);
     }
 }

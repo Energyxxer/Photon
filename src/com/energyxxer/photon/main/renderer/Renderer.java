@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.RenderingHints;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,6 +43,8 @@ public class Renderer extends JPanel {
         g.fillRect(0,0,this.getWidth(), this.getHeight());
 
         Graphics2D g2d = new Graphics2D((java.awt.Graphics2D) g, this);
+
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         if(game.activeScene != null) {
             game.activeScene.render(g2d, this);

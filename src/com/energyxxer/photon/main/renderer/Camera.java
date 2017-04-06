@@ -12,11 +12,11 @@ public class Camera {
     private Renderer renderer;
 
     private double x;
-    private double y;
-    private double z;
+    public double y;
+    public double z;
 
     private double fov = 3000;
-    private double depth = 2;
+    public double depth = 2;
 
     public Camera(Scene scene) {
         this.renderer = scene.getGame().getRenderer();
@@ -32,6 +32,7 @@ public class Camera {
     public Point2D pointToScreen(Point3D p) {
         Dimension resolution = renderer.getResolution();
         double unitSize = ((resolution.width) / (fov + (p.z - z) * depth));
-        return new Point2D((((p.x - x) - Math.copySign((p.z - z) * depth/8, p.x - x)) * unitSize) + (resolution.width / 2), (resolution.height / 2) - (((p.y - y) - Math.copySign((p.z - z) * depth/8, p.y - y)) * unitSize));
+        double factor = Math.pow(2,(p.z - z) / (fov * 100 * depth));
+        return new Point2D(((p.x - x) * unitSize * factor) + (resolution.width / 2), (resolution.height / 2) - ((p.y - y) * unitSize * factor));
     }
 }
